@@ -22,6 +22,8 @@ import com.coolweather.android.db.Province;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
 
+import org.litepal.crud.DataSupport;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +105,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryProvinces(){
         titleText.setText("中国");
         backButton.setVisibility(View.GONE);
-        provinceList=DataSupport.findAll(Province.class);
+        provinceList= DataSupport.findAll(Province.class);
         if(provinceList.size()>0){
             dataList.clear();
             for(Province province:provinceList){
@@ -113,7 +115,7 @@ public class ChooseAreaFragment extends Fragment {
             listView.setSelection(0);
             currentLevel=LEVEL_PROVINCE;
         }else{
-            String address="http://guolin.tech/api/china";
+            String address="http://guolin.tech/api/china/";
             queryFromServer(address,"province");
         }
     }
